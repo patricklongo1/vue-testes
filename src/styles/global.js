@@ -19,8 +19,8 @@ export default injectGlobal`
         -webkit-font-smoothing: antialiased !important;
         text-rendering: optimizeLegibility !important;
     }
-    body, input, button {
-        font: 14px Roboto, sans-serif;
+    body, input, button, h1, p, span, small {
+        font: 'Roboto', sans-serif;
     }
     a {
         text-decoration: none;

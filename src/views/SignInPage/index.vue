@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <SigninForm />
+    <SigninForm :users="persistedUsers" />
   </Container>
 </template>
 
@@ -10,6 +10,17 @@ import { Container } from "./styles";
 
 export default {
   name: "SignInPage",
+  created: async function loadPersistedUsers() {
+    if (this.persistedUsers.length <= 0) {
+      const users = await JSON.parse(localStorage.getItem("users"));
+      this.persistedUsers.push(users);
+    }
+  },
+  data() {
+    return {
+      persistedUsers: []
+    };
+  },
   components: {
     Container,
     SigninForm

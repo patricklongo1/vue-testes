@@ -3,7 +3,7 @@
     <Logo>
       <img :src="logo" alt="logo" />
     </Logo>
-
+    <Title>Registre-se</Title>
     <Form @submit.prevent="handleSubmit()">
       <label for="login">Login</label>
       <input
@@ -24,13 +24,15 @@
       />
 
       <button type="submit">Cadastrar</button>
+      <br />
+      <router-link to="/">Já possuo conta</router-link>
     </Form>
   </Container>
 </template>
 
 <script>
 import logo from "../../assets/logo.png";
-import { Container, Logo, Form } from "./styles";
+import { Container, Logo, Title, Form } from "./styles";
 
 export default {
   name: "SignupForm",
@@ -43,40 +45,41 @@ export default {
     };
   },
   created: async function loadUsers() {
-    const persistedUsers = await JSON.parse(localStorage.getItem("users"));
-    if (persistedUsers) {
-      this.users.push(persistedUsers);
+    if (this.users.length <= 0) {
+      const persistedUsers = await JSON.parse(localStorage.getItem("users"));
+      if (persistedUsers.length >= 1) {
+        this.users = persistedUsers;
+      }
     }
   },
   methods: {
-    handleSubmit() {
-      const userExists = this.users.filter(user => {
-        if (user.login === this.login) {
-          return user;
-        }
-        return null;
-      });
+    async handleSubmit() {
+      try {
+        const userExists = this.users.filter(user => {
+          if (user.login === this.login) {
+            return user;
+          }
+        });
 
-      if (userExists.length >= 0) {
-        this.$vToastify.error(
-          "Este usuário já esta cadastrado",
-          "Falha no cadastro"
-        );
-      } else {
-        const newUser = { login: this.login, password: this.password };
-        this.users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(this.users));
-        this.$vToastify.success(
-          "Usuário registrado com sucesso",
-          "Cadastro realizado"
-        );
-        this.$router.push("/");
+        console.log(userExists);
+        if (userExists.length >= 1) {
+          this.$vToastify.error("Este usuário já existe", "Erro");
+        } else {
+          const newUser = { login: this.login, password: this.password };
+          this.users = [...this.users, newUser];
+          await localStorage.setItem("users", JSON.stringify(this.users));
+          this.$vToastify.success("Usuário cadastrado no sistema", "Sucesso");
+          this.$router.push("/");
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   },
   components: {
     Container,
     Logo,
+    Title,
     Form
   }
 };

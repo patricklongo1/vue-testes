@@ -3,7 +3,7 @@
     <Logo>
       <img :src="logo" alt="logo" />
     </Logo>
-
+    <Title>Login</Title>
     <Form @submit.prevent="handleSubmit()">
       <label for="login">Login</label>
       <input
@@ -24,13 +24,15 @@
       />
 
       <button type="submit">Entrar</button>
+      <br />
+      <router-link to="/register">Criar conta gratuita</router-link>
     </Form>
   </Container>
 </template>
 
 <script>
 import logo from "../../assets/logo.png";
-import { Container, Logo, Form } from "./styles";
+import { Container, Logo, Title, Form } from "./styles";
 
 export default {
   name: "SigninForm",
@@ -73,6 +75,7 @@ export default {
   components: {
     Container,
     Logo,
+    Title,
     Form
   },
   props: ["users"]

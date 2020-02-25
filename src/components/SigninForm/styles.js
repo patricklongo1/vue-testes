@@ -18,6 +18,11 @@ export const Logo = styled.div`
   }
 `;
 
+export const Title = styled.h1`
+  color: #00bec4;
+  margin-bottom: 15px;
+`;
+
 export const Form = styled.form`
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -63,6 +68,15 @@ export const Form = styled.form`
 
     &:hover {
       background: #00bef9;
+    }
+  }
+
+  a {
+    color: #00bec4;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #333;
     }
   }
 `;

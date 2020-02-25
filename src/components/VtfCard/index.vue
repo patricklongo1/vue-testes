@@ -2,7 +2,7 @@
   <v-card class="mx-auto" max-width="400">
     <v-img class="white--text align-end" height="200px" :src="url">
       <v-card-actions id="toRight">
-        <v-btn color="red" text>
+        <v-btn color="red" text @click="handleDelete(name)">
           X
         </v-btn>
       </v-card-actions>
@@ -17,7 +17,7 @@
 <script>
 export default {
   name: "VtfCard",
-  props: ["date", "url", "name"]
+  props: ["date", "url", "name", "handleDelete"]
 };
 </script>
 

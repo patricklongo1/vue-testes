@@ -14,6 +14,7 @@ export const Title = styled.h1`
 `;
 
 export const CardsContainer = styled.section`
+  margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;

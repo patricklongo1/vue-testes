@@ -65,7 +65,7 @@ export default {
           this.$router.push("/home");
         }
       } catch (error) {
-        this.$vToastify.erro(
+        this.$vToastify.error(
           "Ocorreu um erro durante o processo, tente novamente",
           "Falha na autenticação"
         );

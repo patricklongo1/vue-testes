@@ -4,7 +4,7 @@ import VueToastify from "vue-toastify";
 import App from "./App.vue";
 import router from "./router";
 import vuetify from "./plugins/vuetify";
-import "vuetify/dist/vuetify.min.css";
+import "vuetify/dist/vuetify.css";
 
 Vue.config.productionTip = false;
 Vue.use(VueToastify, {
@@ -14,7 +14,7 @@ Vue.use(VueToastify, {
 });
 
 new Vue({
-  router,
   vuetify,
+  router,
   render: h => h(App)
 }).$mount("#app");
